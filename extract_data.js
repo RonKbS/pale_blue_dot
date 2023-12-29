@@ -33,14 +33,17 @@ var createNDVITable = function(image) {
 var collectionWithNDVITable = collectionWithNDVI.map(createNDVITable);
 
 
+// var ndviTable = collectionWithNDVITable.select(['system:time_start', 'NDVI'])
+//   .reduceColumns(ee.Reducer.toList(), ['system:time_start', 'NDVI']);
+
 console.log(collectionWithNDVITable)
 
 
 
-// Export.table.toDrive({
-//     collection: collectionWithNDVI,
-//     description: 'kampala_ndvi',
-//     folder: 'data_nerds',
-//     fileNamePrefix: 'ndvi_time_series_multiple',
-//     fileFormat: 'CSV'
-// })
+Export.table.toDrive({
+    collection: collectionWithNDVITable,
+    description: 'kampala_ndvi',
+    folder: 'data_nerds',
+    fileNamePrefix: 'ndvi_time_series_multiple',
+    fileFormat: 'CSV'
+})
