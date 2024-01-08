@@ -24,7 +24,7 @@ var createNDVITable = function(image) {
     scale: 30
   }).get('NDVI');
   
-  return ee.Feature(null, {
+  return ee.Feature(image.geometry().centroid(), {
     'system:time_start': image.get('system:time_start'),
     'NDVI': ndviValue
   });
@@ -33,17 +33,14 @@ var createNDVITable = function(image) {
 var collectionWithNDVITable = collectionWithNDVI.map(createNDVITable);
 
 
-// var ndviTable = collectionWithNDVITable.select(['system:time_start', 'NDVI'])
-//   .reduceColumns(ee.Reducer.toList(), ['system:time_start', 'NDVI']);
-
 console.log(collectionWithNDVITable)
 
 
 
 Export.table.toDrive({
-    collection: collectionWithNDVITable,
-    description: 'kampala_ndvi',
+    collection: collectionWithNDVI,
+    description: 'kampala_ndvi_with_points',
     folder: 'data_nerds',
-    fileNamePrefix: 'ndvi_time_series_multiple',
+    fileNamePrefix: 'ndvi_time_series_multiple_with_points',
     fileFormat: 'CSV'
 })
