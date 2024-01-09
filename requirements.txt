@@ -10,6 +10,7 @@ Babel==2.14.0
 backcall==0.2.0
 beautifulsoup4==4.12.2
 bleach==6.1.0
+branca==0.7.0
 certifi==2023.11.17
 cffi==1.16.0
 charset-normalizer==3.3.2
@@ -20,6 +21,7 @@ defusedxml==0.7.1
 exceptiongroup==1.2.0
 executing==2.0.1
 fastjsonschema==2.19.1
+folium==0.15.1
 fqdn==1.5.1
 idna==3.6
 importlib-metadata==7.0.1
@@ -99,4 +101,5 @@ wcwidth==0.2.12
 webcolors==1.13
 webencodings==0.5.1
 websocket-client==1.7.0
+xyzservices==2023.10.1
 zipp==3.17.0
