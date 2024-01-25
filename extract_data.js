@@ -1,8 +1,11 @@
 
 var ndvi_image_collection = ee.ImageCollection('LANDSAT/LC08/C02/T1_TOA')
-                  .filterDate('2021-01-01', '2022-12-31')
-                  .map(function(image){return image.clip(geometry)})
-                  .filterBounds(geometry);
+                  .filterDate('2012-01-01', '2023-12-31')
+                  .map(function(image){
+                    // return image.reproject('EPSG:3857', null, 30).clip(geometry)
+                    return image.clip(geometry2)
+                  })
+                  .filterBounds(geometry2);
                   
 // Map.addLayer(image)
 // console.log(image)
@@ -38,9 +41,9 @@ console.log(collectionWithNDVITable)
 
 
 Export.table.toDrive({
-    collection: collectionWithNDVI,
+    collection: collectionWithNDVITable,
     description: 'kampala_ndvi_with_points',
     folder: 'data_nerds',
-    fileNamePrefix: 'ndvi_time_series_multiple_with_points',
+    fileNamePrefix: 'ndvi_time_series_multiple_with_points_smaller_bound',
     fileFormat: 'CSV'
 })
